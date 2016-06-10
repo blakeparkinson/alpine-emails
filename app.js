@@ -4,6 +4,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+require('newrelic');
 
 var routes = require('./routes/index');
 var main = require('./routes/main');
