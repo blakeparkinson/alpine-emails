@@ -9,13 +9,12 @@ var config = require('../config.json');
 var transporter = nodemailer.createTransport(smtpTransport({
   service: 'Gmail',
   auth: {
-      user: config.gmail_un || process.env.email_un,
-      pass: config.gmail_pw || process.env.email_pw
+      user: process.env.emailUsername || config.gmail_un,
+      pass: process.env.emailPassword || config.gmail_pw
   }
 }));
 
 router.post('/email', cors(), function(req,res){
-  console.log(req.body.attachment);
 
     var mailOptions = {
 
