@@ -15,6 +15,8 @@ var transporter = nodemailer.createTransport(smtpTransport({
 }));
 
 router.post('/email', cors(), function(req,res){
+  console.log(process.env);
+
 
     var mailOptions = {
 
