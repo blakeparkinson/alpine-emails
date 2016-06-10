@@ -4,7 +4,6 @@ var router = express.Router();
 var smtpTransport = require("nodemailer-smtp-transport");
 var app = express();
 var cors = require('cors')
-var config = require('../config.json');
 
 var transporter = nodemailer.createTransport(smtpTransport({
   service: 'Gmail',
