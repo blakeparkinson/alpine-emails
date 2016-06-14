@@ -19,9 +19,9 @@ router.post('/email', cors(), function(req,res){
 
     var mailOptions = {
 
-        from: req.body.firstName + ' ' + req.body.lastName, // sender address
+        from: req.body.firstName, // sender address
         to: 'alpinelabsemails@gmail.com', // list of receivers
-        subject: req.body.firstName + ' ' + req.body.lastName + '(' + req.body.email + ')', // Subject line
+        subject: req.body.firstName + ' ' + '(' + req.body.email + ')', // Subject line
         text: req.body.comments, // plaintext body
         attachments: [
           {
