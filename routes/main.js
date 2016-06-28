@@ -22,14 +22,21 @@ router.post('/email', cors(), function(req,res){
         from: req.body.firstName, // sender address
         to: 'alpinelabsemails@gmail.com', // list of receivers
         subject: req.body.firstName + ' ' + '(' + req.body.email + ')', // Subject line
-        text: req.body.comments, // plaintext body
-        attachments: [
-          {
-            filename: 'error.log',
-            content: req.body.attachment
-          }
-        ]
+        text: req.body.comments // plaintext body
     };
+
+    if (req.body.attachment){
+      mailOptions.attachments = [
+        {
+          filename: 'error.log',
+          content: req.body.attachment
+        }
+      ];
+    }
+
+    else{
+      mailOptions.text += ' (No attachment was provided)';
+    }
 
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(error, info){
