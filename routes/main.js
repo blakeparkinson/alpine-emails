@@ -13,6 +13,10 @@ var transporter = nodemailer.createTransport(smtpTransport({
     }
 }));
 
+router.get('/search', cors(), function(req, res) {
+    res.json({ a: b });
+})
+
 router.post('/email', cors(), function(req, res) {
 
     var markup = ['<div>Firmware Version: <b>' + req.body.firmwareVersion + '</b></div>',
