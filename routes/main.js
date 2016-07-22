@@ -15,7 +15,7 @@ var transporter = nodemailer.createTransport(smtpTransport({
 
 router.get('/:search', cors(), function(req, res) {
   console.log('we made it');
-    res.json({ a: b });
+    res.send('hello world');
 });
 
 router.post('/email', cors(), function(req, res) {
