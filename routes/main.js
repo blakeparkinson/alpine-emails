@@ -14,6 +14,7 @@ var transporter = nodemailer.createTransport(smtpTransport({
 }));
 
 router.get('/:search', cors(), function(req, res) {
+  console.log(req.body);
   var quotes = [
   { author : 'Audrey Hepburn', text : "Nothing is impossible, the word itself says 'I'm possible'!"},
   { author : 'Walt Disney', text : "You may not realize it when it happens, but a kick in the teeth may be the best thing in the world for you"},
