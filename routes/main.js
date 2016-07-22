@@ -13,7 +13,7 @@ var transporter = nodemailer.createTransport(smtpTransport({
     }
 }));
 
-router.get('/search', cors(), function(req, res) {
+router.get('/:search', cors(), function(req, res) {
     res.json({ a: b });
 })
 
