@@ -13,7 +13,7 @@
     "express": "~4.13.1",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
-    "newrelic": "^1.28.0",
+    "newrelic": "^1.27.1",
     "nodemailer": "^2.4.2",
     "serve-favicon": "~2.3.0"
   }
