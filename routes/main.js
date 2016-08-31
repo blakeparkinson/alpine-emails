@@ -14,6 +14,7 @@ var transporter = nodemailer.createTransport(smtpTransport({
 }));
 
 router.post('/email', cors(), function(req, res) {
+  console.log('request made to the email api');
 
     var markup = ['<div>Firmware Version: <b>' + req.body.firmwareVersion + '</b></div>',
         '<div>App Version: <b>' + req.body.appVersion + '</b></div>',
