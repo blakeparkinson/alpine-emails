@@ -38,16 +38,19 @@ router.post('/email', cors(), function(req, res) {
         mailOptions.text += ' (No attachment was provided)';
     }
 
+    console.log('attempting to send email');
+
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(error, info) {
-        console.log(mailOptions);
+      console.log('info is: ' + info);
         if (error) {
-            console.log(error);
+            console.log('we got an error' + error);
             res.json('error', {
                 error: 'failed to send email'
             });
 
         } else {
+            console.log('bug report submitted successfully');
             res.json({
                 success: true
             });
