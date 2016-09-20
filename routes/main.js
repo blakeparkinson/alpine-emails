@@ -2,15 +2,18 @@ var express = require('express');
 var nodemailer = require("nodemailer");
 var router = express.Router();
 var smtpTransport = require("nodemailer-smtp-transport");
+var smtpPool = require('nodemailer-smtp-pool');
 var app = express();
 var cors = require('cors')
 
-var transporter = nodemailer.createTransport(smtpTransport({
+var transporter = nodemailer.createTransport(smtpPool({
     service: 'Gmail',
     auth: {
         user: process.env.emailUsername || config.gmail_un,
         pass: process.env.emailPassword || config.gmail_pw
-    }
+    },
+    maxConnections: 20,
+    maxMessages: infinity
 }));
 
 router.post('/email', cors(), function(req, res) {
