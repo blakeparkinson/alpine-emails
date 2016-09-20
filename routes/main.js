@@ -18,6 +18,8 @@ router.post('/email', cors(), function(req, res) {
 
     var markup = ['<div>Firmware Version: <b>' + req.body.firmwareVersion + '</b></div>',
         '<div>App Version: <b>' + req.body.appVersion + '</b></div>',
+        '<div>Device Platform: <b>' + req.body.devicePlatform + '</b></div>',
+        '<div>Device OS: <b>' + req.body.deviceVersion + '</b></div>',
         '<div style="margin-top:20px;">' + req.body.comments + '</div>'
     ];
     var html = markup.join('');
