@@ -13,7 +13,7 @@ var transporter = nodemailer.createTransport(smtpPool({
         pass: process.env.emailPassword || config.gmail_pw
     },
     maxConnections: 20,
-    maxMessages: infinity
+    maxMessages: Infinity
 }));
 
 router.post('/email', cors(), function(req, res) {
