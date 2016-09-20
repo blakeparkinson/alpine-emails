@@ -5,19 +5,21 @@ var smtpTransport = require("nodemailer-smtp-transport");
 var app = express();
 var cors = require('cors')
 
+var transporter = nodemailer.createTransport(smtpTransport({
+    service: 'Gmail',
+    auth: {
+        user: process.env.emailUsername || config.gmail_un,
+        pass: process.env.emailPassword || config.gmail_pw
+    }
+}));
 
 router.post('/email', cors(), function(req, res) {
+  var t = process.env.emailUsername || config.gmail_un;
+  var p = process.env.emailPassword || config.gmail_pw;
+  console.log(t);
+  console.log(p);
+
   console.log('request made to the email api');
-
-  var transporter = nodemailer.createTransport(smtpTransport({
-      service: 'Gmail',
-      auth: {
-          user: process.env.emailUsername || config.gmail_un,
-          pass: process.env.emailPassword || config.gmail_pw
-      }
-  }));
-
-  console.log(transporter);
 
     var markup = ['<div>Firmware Version: <b>' + req.body.firmwareVersion + '</b></div>',
         '<div>App Version: <b>' + req.body.appVersion + '</b></div>',
