@@ -33,7 +33,7 @@ var transporter = nodemailer.createTransport(smtpPool({
       clientSecret: process.env.googleClientSecret,
       refreshToken: process.env.googleRefreshToken
     }
-  }
+  },
     maxConnections: 20,
     maxMessages: Infinity
 }));
