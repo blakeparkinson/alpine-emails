@@ -6,22 +6,7 @@ var smtpPool = require('nodemailer-smtp-pool');
 var app = express();
 var cors = require('cors');
 var xoauth2 = require('xoauth2');
-/*var google = require('googleapis');
-var OAuth2 = google.auth.OAuth2;
 
-var oauth2Client = new OAuth2(process.env.googleClientId, process.env.googleClientSecret, "http://alpinelabsemail.herokuapp.com/main/redirect");
-
-var scopes = [
-  'https://mail.google.com/',
-  'https://www.googleapis.com/auth/gmail.compose',
-  'https://www.googleapis.com/auth/gmail.insert',
-  'https://www.googleapis.com/auth/gmail.labels',
-  'https://www.googleapis.com/auth/gmail.modify',
-  'https://www.googleapis.com/auth/gmail.readonly',
-  'https://www.googleapis.com/auth/gmail.send',
-  'https://www.googleapis.com/auth/gmail.settings.basic',
-  'https://www.googleapis.com/auth/gmail.settings.sharing'
-];*/
 
 var transporter = nodemailer.createTransport("SMTP",{
     service: 'gmail',
