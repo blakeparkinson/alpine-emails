@@ -14,7 +14,8 @@
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "newrelic": "^1.27.1",
-    "nodemailer": "0.7.1",
+    "nodemailer": "^0.7.1",
+    "nodemailer-smtp-pool": "^2.8.2",
     "serve-favicon": "~2.3.0",
     "xoauth2": "^1.2.0"
   }
