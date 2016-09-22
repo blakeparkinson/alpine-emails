@@ -16,6 +16,7 @@
     "newrelic": "^1.27.1",
     "nodemailer": "^2.4.2",
     "nodemailer-smtp-pool": "^2.8.2",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "xoauth2": "^1.2.0"
   }
 }

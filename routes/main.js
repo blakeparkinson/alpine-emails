@@ -4,24 +4,41 @@ var router = express.Router();
 var smtpTransport = require("nodemailer-smtp-transport");
 var smtpPool = require('nodemailer-smtp-pool');
 var app = express();
-var cors = require('cors')
+var cors = require('cors');
+var xoauth2 = require('xoauth2');
+/*var google = require('googleapis');
+var OAuth2 = google.auth.OAuth2;
+
+var oauth2Client = new OAuth2(process.env.googleClientId, process.env.googleClientSecret, "http://alpinelabsemail.herokuapp.com/main/redirect");
+
+var scopes = [
+  'https://mail.google.com/',
+  'https://www.googleapis.com/auth/gmail.compose',
+  'https://www.googleapis.com/auth/gmail.insert',
+  'https://www.googleapis.com/auth/gmail.labels',
+  'https://www.googleapis.com/auth/gmail.modify',
+  'https://www.googleapis.com/auth/gmail.readonly',
+  'https://www.googleapis.com/auth/gmail.send',
+  'https://www.googleapis.com/auth/gmail.settings.basic',
+  'https://www.googleapis.com/auth/gmail.settings.sharing'
+];*/
 
 var transporter = nodemailer.createTransport(smtpPool({
-    service: 'Gmail',
+    service: 'gmail',
     auth: {
-        user: process.env.emailUsername || config.gmail_un,
-        pass: process.env.emailPassword || config.gmail_pw
-    },
+    XOAuth2: {
+      user: "alpinelabsemail@gmail.com", // Your gmail address.
+                                            // Not @developer.gserviceaccount.com
+      clientId: process.env.googleClientId,
+      clientSecret: process.env.googleClientSecret,
+      refreshToken: process.env.googleRefreshToken
+    }
+  }
     maxConnections: 20,
     maxMessages: Infinity
 }));
 
 router.post('/email', cors(), function(req, res) {
-  var t = process.env.emailUsername || config.gmail_un;
-  var p = process.env.emailPassword || config.gmail_pw;
-  console.log(t);
-  console.log(p);
-
   console.log('request made to the email api');
 
     var markup = ['<div>Firmware Version: <b>' + req.body.firmwareVersion + '</b></div>',
@@ -66,8 +83,10 @@ router.post('/email', cors(), function(req, res) {
                 success: true
             });
         }
+        transporter.close();
     });
 });
+
 
 router.get('/', function(req, res) {
     res.render('index', {
