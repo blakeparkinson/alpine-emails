@@ -27,7 +27,7 @@ var transporter = nodemailer.createTransport(smtpPool({
     service: 'gmail',
     auth: {
     XOAuth2: {
-      user: "alpinelabsemail@gmail.com", // Your gmail address.
+      user: "alpinelabsemails@gmail.com", // Your gmail address.
                                             // Not @developer.gserviceaccount.com
       clientId: process.env.googleClientId,
       clientSecret: process.env.googleClientSecret,
