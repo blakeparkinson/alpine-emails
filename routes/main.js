@@ -23,20 +23,17 @@ var scopes = [
   'https://www.googleapis.com/auth/gmail.settings.sharing'
 ];*/
 
-var transporter = nodemailer.createTransport(smtpPool({
-    service: 'gmail',
+var transporter = nodemailer.createTransport('SMTP',{
+    service: 'Gmail',
     auth: {
     XOAuth2: {
       user: "alpinelabsemails@gmail.com", // Your gmail address.
-                                            // Not @developer.gserviceaccount.com
       clientId: process.env.googleClientId,
       clientSecret: process.env.googleClientSecret,
       refreshToken: process.env.googleRefreshToken
     }
-  },
-    maxConnections: 20,
-    maxMessages: Infinity
-}));
+  }
+});
 
 router.post('/email', cors(), function(req, res) {
   console.log('request made to the email api');
