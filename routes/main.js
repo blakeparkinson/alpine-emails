@@ -23,10 +23,10 @@ var scopes = [
   'https://www.googleapis.com/auth/gmail.settings.sharing'
 ];*/
 
-var transporter = nodemailer.createTransport('SMTP',{
-    service: 'Gmail',
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
     auth: {
-    XOAuth2: {
+    xoauth2: {
       user: "alpinelabsemails@gmail.com", // Your gmail address.
       clientId: process.env.googleClientId,
       clientSecret: process.env.googleClientSecret,
