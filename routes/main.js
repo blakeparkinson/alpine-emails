@@ -49,7 +49,6 @@ router.post('/email', cors(), function(req, res) {
     }
 
     console.log('attempting to send email');
-    console.log(mailOptions);
 
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(error, info) {
