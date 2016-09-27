@@ -42,7 +42,7 @@ router.post('/email', cors(), function(req, res) {
     if (req.body.attachment) {
         mailOptions.attachments = [{
             filename: 'error.log',
-            content: req.body.attachment
+            contents: req.body.attachment
         }];
     } else {
         mailOptions.text += ' (No attachment was provided)';
