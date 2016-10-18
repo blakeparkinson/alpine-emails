@@ -90,7 +90,7 @@ function sendEmailBackToReporter(options){
     var html = markup.join('');
     var mailOptions = {
 
-        from: 'Alpine Labs', // sender address
+        from: 'bug-reports@alpinelaboratories.com', // sender address
         to: options.email, // list of receivers
         subject: 'Got The Email', // Subject line
         html: html
@@ -101,15 +101,9 @@ function sendEmailBackToReporter(options){
       console.log('info is: ' + info);
         if (error) {
             console.log('we got an error' + error);
-            res.json('error', {
-                error: 'failed to send email'
-            });
 
         } else {
             console.log('failed to send email back to user');
-            res.json({
-                success: true
-            });
 
         }
         transporter2.close();
