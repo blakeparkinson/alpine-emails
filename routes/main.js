@@ -6,9 +6,9 @@ var smtpPool = require('nodemailer-smtp-pool');
 var app = express();
 var cors = require('cors');
 var xoauth2 = require('xoauth2');
+var wellknown = require('nodemailer-wellknown');
 
-
-var transporter = nodemailer.createTransport("SMTP",{
+var transporter1 = nodemailer.createTransport("SMTP",{
     service: 'gmail',
     auth: {
     XOAuth2: {
@@ -20,7 +20,17 @@ var transporter = nodemailer.createTransport("SMTP",{
   }
 });
 
+var transporter2 = nodemailer.createTransport("SMTP",{
+    service: 'Godaddy',
+    auth: {
+      user: 'bug-reports@alpinelaboratories.com',
+      pass: process.env.goDaddyPw
+  }
+});
+
+
 router.post('/email', cors(), function(req, res) {
+
   console.log('request made to the email api');
 
     var markup = ['<div>Firmware Version: <b>' + req.body.firmwareVersion + '</b></div>',
@@ -52,7 +62,7 @@ router.post('/email', cors(), function(req, res) {
     console.log('attempting to send email');
 
     // send mail with defined transport object
-    transporter.sendMail(mailOptions, function(error, info) {
+    transporter1.sendMail(mailOptions, function(error, info) {
       console.log('info is: ' + info);
         if (error) {
             console.log('we got an error' + error);
@@ -65,10 +75,46 @@ router.post('/email', cors(), function(req, res) {
             res.json({
                 success: true
             });
+
+            sendEmailBackToReporter(req.body);
         }
-        transporter.close();
+        transporter1.close();
     });
 });
+
+function sendEmailBackToReporter(options){
+  console.log('sending email back');
+
+    var markup = ['<div>Hello World</div'
+    ];
+    var html = markup.join('');
+    var mailOptions = {
+
+        from: 'Alpine Labs', // sender address
+        to: options.email, // list of receivers
+        subject: 'Got The Email', // Subject line
+        html: html
+    };
+
+    // send mail with defined transport object
+    transporter2.sendMail(mailOptions, function(error, info) {
+      console.log('info is: ' + info);
+        if (error) {
+            console.log('we got an error' + error);
+            res.json('error', {
+                error: 'failed to send email'
+            });
+
+        } else {
+            console.log('failed to send email back to user');
+            res.json({
+                success: true
+            });
+
+        }
+        transporter2.close();
+    });
+}
 
 
 router.get('/', function(req, res) {
