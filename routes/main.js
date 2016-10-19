@@ -9,33 +9,35 @@ var xoauth2 = require('xoauth2');
 var wellknown = require('nodemailer-wellknown');
 var swig = require('swig');
 var template = swig.compileFile(__dirname + '/../templates/bugreply.html');
+var plainTemplate = swig.compileFile(__dirname + '/../bugreply.txt');
 
 
 
-var transporter1 = nodemailer.createTransport("SMTP",{
+
+var transporter1 = nodemailer.createTransport("SMTP", {
     service: 'gmail',
     auth: {
-    XOAuth2: {
-      user: "alpinelabsemails@gmail.com", // Your gmail address.
-      clientId: process.env.googleClientId,
-      clientSecret: process.env.googleClientSecret,
-      refreshToken: process.env.googleRefreshToken
+        XOAuth2: {
+            user: "alpinelabsemails@gmail.com", // Your gmail address.
+            clientId: process.env.googleClientId,
+            clientSecret: process.env.googleClientSecret,
+            refreshToken: process.env.googleRefreshToken
+        }
     }
-  }
 });
 
-var transporter2 = nodemailer.createTransport("SMTP",{
+var transporter2 = nodemailer.createTransport("SMTP", {
     service: 'Godaddy',
     auth: {
-      user: 'bug-reports@alpinelaboratories.com',
-      pass: process.env.goDaddyPw
-  }
+        user: 'bug-reports@alpinelaboratories.com',
+        pass: process.env.goDaddyPw
+    }
 });
 
 
 router.post('/email', cors(), function(req, res) {
 
-  console.log('request made to the email api');
+    console.log('request made to the email api');
 
     var markup = ['<div>Firmware Version: <b>' + req.body.firmwareVersion + '</b></div>',
         '<div>App Version: <b>' + req.body.appVersion + '</b></div>',
@@ -67,7 +69,7 @@ router.post('/email', cors(), function(req, res) {
 
     // send mail with defined transport object
     transporter1.sendMail(mailOptions, function(error, info) {
-      console.log('info is: ' + info);
+        console.log('info is: ' + info);
         if (error) {
             console.log('we got an error' + error);
             res.json('error', {
@@ -86,24 +88,27 @@ router.post('/email', cors(), function(req, res) {
     });
 });
 
-function sendEmailBackToReporter(options){
-  console.log('sending email back');
+function sendEmailBackToReporter(options) {
+    console.log('sending email back');
 
     var html = template({
-    pagename: 'awesome people',
-    authors: ['Paul', 'Jim', 'Jane']
-});
+        firstName: req.body.firstName
+    });
+    var plainText = plainTemplate({
+        firstName: req.body.firstName
+    });
     var mailOptions = {
 
         from: 'bug-reports@alpinelaboratories.com', // sender address
         to: options.email, // list of receivers
         subject: 'Got The Email', // Subject line
-        html: html
+        html: html,
+        text: plainText
     };
 
     // send mail with defined transport object
     transporter2.sendMail(mailOptions, function(error, info) {
-      console.log('info is: ' + info);
+        console.log('info is: ' + info);
         if (error) {
             console.log('we got an error' + error);
 
