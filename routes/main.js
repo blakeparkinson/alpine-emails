@@ -67,12 +67,9 @@ router.post('/email', cors(), function(req, res) {
     }
 
     console.log('attempting to send email');
-    sendEmailBackToReporter(req.body);
-
-transporter1.close();
 
     // send mail with defined transport object
-    /*transporter1.sendMail(mailOptions, function(error, info) {
+    transporter1.sendMail(mailOptions, function(error, info) {
         console.log('info is: ' + info);
         if (error) {
             console.log('we got an error' + error);
@@ -89,7 +86,7 @@ transporter1.close();
             sendEmailBackToReporter(req.body);
         }
         transporter1.close();
-    });*/
+    });
 });
 
 function sendEmailBackToReporter(options) {
@@ -110,7 +107,7 @@ function sendEmailBackToReporter(options) {
 
         from: 'bug-reports@alpinelaboratories.com', // sender address
         to: options.email, // list of receivers
-        subject: 'Got The Email', // Subject line
+        subject: 'Thanks for reporting your issue', // Subject line
         html: html,
         text: plainText
     };
