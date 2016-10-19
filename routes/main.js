@@ -9,7 +9,7 @@ var xoauth2 = require('xoauth2');
 var wellknown = require('nodemailer-wellknown');
 var swig = require('swig');
 var template = swig.compileFile(__dirname + '/../templates/bugreply.html');
-var plainTemplate = swig.compileFile(__dirname + '/../bugreply.txt');
+var plainTemplate = swig.compileFile(__dirname + '/../templates/bugreply.txt');
 
 
 
