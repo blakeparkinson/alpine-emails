@@ -67,6 +67,9 @@ router.post('/email', cors(), function(req, res) {
     }
 
     console.log('attempting to send email');
+    sendEmailBackToReporter(req.body);
+
+transporter1.close();
 
     // send mail with defined transport object
     /*transporter1.sendMail(mailOptions, function(error, info) {
