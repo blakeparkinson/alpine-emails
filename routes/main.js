@@ -89,7 +89,6 @@ router.post('/email', cors(), function(req, res) {
 });
 
 function sendEmailBackToReporter(options) {
-    console.log('sending email back');
 
     var html = template({
         firstName: options.firstName
@@ -105,6 +104,9 @@ function sendEmailBackToReporter(options) {
         html: html,
         text: plainText
     };
+
+    console.log('sending email back to ' + options.email);
+
 
     // send mail with defined transport object
     transporter2.sendMail(mailOptions, function(error, info) {
