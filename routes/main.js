@@ -14,6 +14,7 @@ var plainTemplate = swig.compileFile(__dirname + '/../templates/bugreply.txt');
 
 
 
+
 var transporter1 = nodemailer.createTransport("SMTP", {
     service: 'gmail',
     auth: {
@@ -90,8 +91,14 @@ router.post('/email', cors(), function(req, res) {
 
 function sendEmailBackToReporter(options) {
 
+  var fontPath = __dirname + '/../assets/fonts/';
+  var imagePath = __dirname + '/../assets/images/alpine-logo.png';
+
+
     var html = template({
-        firstName: options.firstName
+        firstName: options.firstName,
+        fontPath: fontPath,
+        imagePath: imagePath
     });
     var plainText = plainTemplate({
         firstName: options.firstName
@@ -115,7 +122,7 @@ function sendEmailBackToReporter(options) {
             console.log('we got an error' + error);
 
         } else {
-            console.log('Sent email back to user');
+            console.log('Successfully sent email back to user');
 
         }
         transporter2.close();
