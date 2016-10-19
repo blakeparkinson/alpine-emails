@@ -8,7 +8,7 @@ var cors = require('cors');
 var xoauth2 = require('xoauth2');
 var wellknown = require('nodemailer-wellknown');
 var swig = require('swig');
-var template = '../templates/bugreport.html');
+var template = '../templates/bugreport.html';
 
 
 var transporter1 = nodemailer.createTransport("SMTP",{
