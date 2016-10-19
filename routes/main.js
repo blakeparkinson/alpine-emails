@@ -89,11 +89,10 @@ router.post('/email', cors(), function(req, res) {
 function sendEmailBackToReporter(options){
   console.log('sending email back');
 
-    var markup = template({
+    var html = template({
     pagename: 'awesome people',
     authors: ['Paul', 'Jim', 'Jane']
 });
-    var html = markup.join('');
     var mailOptions = {
 
         from: 'bug-reports@alpinelaboratories.com', // sender address
