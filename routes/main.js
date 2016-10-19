@@ -92,10 +92,10 @@ function sendEmailBackToReporter(options) {
     console.log('sending email back');
 
     var html = template({
-        firstName: req.body.firstName
+        firstName: options.firstName
     });
     var plainText = plainTemplate({
-        firstName: req.body.firstName
+        firstName: options.firstName
     });
     var mailOptions = {
 
