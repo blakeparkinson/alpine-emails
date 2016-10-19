@@ -7,6 +7,9 @@ var app = express();
 var cors = require('cors');
 var xoauth2 = require('xoauth2');
 var wellknown = require('nodemailer-wellknown');
+var swig = require('swig');
+var template = '../templates/bugreport.html');
+
 
 var transporter1 = nodemailer.createTransport("SMTP",{
     service: 'gmail',
@@ -85,8 +88,10 @@ router.post('/email', cors(), function(req, res) {
 function sendEmailBackToReporter(options){
   console.log('sending email back');
 
-    var markup = ['<div>Hello World</div'
-    ];
+    var markup = template({
+    pagename: 'awesome people',
+    authors: ['Paul', 'Jim', 'Jane']
+});
     var html = markup.join('');
     var mailOptions = {
 
@@ -103,7 +108,7 @@ function sendEmailBackToReporter(options){
             console.log('we got an error' + error);
 
         } else {
-            console.log('failed to send email back to user');
+            console.log('Sent email back to user');
 
         }
         transporter2.close();

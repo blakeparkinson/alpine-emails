@@ -19,6 +19,7 @@
     "nodemailer-smtp-transport": "^2.7.2",
     "nodemailer-wellknown": "^0.2.0",
     "serve-favicon": "~2.3.0",
+    "swig": "^1.4.2",
     "xoauth2": "^1.2.0"
   }
 }
