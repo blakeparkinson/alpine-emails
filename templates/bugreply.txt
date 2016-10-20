@@ -1,8 +1,8 @@
 Hello {{ firstName }},
  
-Thank you for submitting a bug report! We've found that most bug reports can be resolved in a 3 minutes by reading the pages below. Please take a look and if the articles or videos below don't solve the issue, email us back and we'll take a deeper look at what is going on!
+The articles and videos below often resolve most issues. Please take a look and if the issue persists email us back and we'll take a deeper look at what’s going on!
  
-1. Thumbnail images are not working (Black or White Images)
+1. Thumbnail images are not working (they are black or white)
 Read this page: https://alpinelaboratories.com/pages/pulse-image-review-problems_s
  
 2. Thumbnail Images won't turn on
@@ -13,7 +13,5 @@ Watch this video: https://alpinelaboratories.com/pages/no-camera-connected-in-ap
  
 4. Pulse won't connect to my phone (the app)
 Read this page: https://alpinelaboratories.com/pages/pulse-support-app-cant-find-pulse
- 
-Again, if the issue isn't resolved by the articles or videos below, lets us know and we'll take a closer look!
- 
+  
 -The Alpine Labs team
