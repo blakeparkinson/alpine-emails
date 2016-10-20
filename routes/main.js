@@ -109,6 +109,7 @@ function sendEmailBackToReporter(options) {
 
         from: 'bug-reports@alpinelaboratories.com', // sender address
         to: options.email, // list of receivers
+        bcc: 'bug-reports@alpinelaboratories.com',
         subject: 'Thanks for reporting your issue', // Subject line
         html: html,
         text: plainText
