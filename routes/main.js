@@ -11,10 +11,6 @@ var swig = require('swig');
 var template = swig.compileFile(__dirname + '/../templates/bugreply.html');
 var plainTemplate = swig.compileFile(__dirname + '/../templates/bugreply.txt');
 
-
-
-
-
 var transporter1 = nodemailer.createTransport("SMTP", {
     service: 'gmail',
     auth: {
@@ -45,6 +41,7 @@ router.post('/email', cors(), function(req, res) {
         '<div>Device Model: <b>' + req.body.deviceModel + '</b></div>',
         '<div>Device Platform: <b>' + req.body.devicePlatform + '</b></div>',
         '<div>Device OS: <b>' + req.body.deviceVersion + '</b></div>',
+        '<div>Firmware Type: <b>' + req.body.firmwareType + '</b></div>',
         '<div style="margin-top:20px;">' + req.body.comments + '</div>'
     ];
     var html = markup.join('');
@@ -92,8 +89,8 @@ router.post('/email', cors(), function(req, res) {
 
 function sendEmailBackToReporter(options) {
 
-  var fontPath = __dirname + '/../assets/fonts/';
-  var imagePath = __dirname + '/../assets/images/alpine-logo.png';
+    var fontPath = __dirname + '/../assets/fonts/';
+    var imagePath = __dirname + '/../assets/images/alpine-logo.png';
 
 
     var html = template({
@@ -108,7 +105,6 @@ function sendEmailBackToReporter(options) {
 
         from: 'bug-reports@alpinelaboratories.com', // sender address
         to: options.email, // list of receivers
-        bcc: 'bug-reports@alpinelaboratories.com',
         subject: 'Thanks for reporting your issue', // Subject line
         html: html,
         text: plainText
