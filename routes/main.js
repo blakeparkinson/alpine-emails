@@ -36,27 +36,21 @@ var transporter2 = nodemailer.createTransport("SMTP", {
 
 router.post('/images', cors(), function(req, res) {
   console.log('hi');
-  var options = {
-  url: 'http://waifu2x.udp.jp/api',
-  headers: {
-    'User-Agent': 'request'
-  }
-};
-
+  var formData = querystring.stringify({'noise': 1, 'scale': 2, 'style': 'photo',  'url': 'https://s3.amazonaws.com/alpine-misc/pulse-thumb.jpg'});
   request({
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Accept': '*/*'
     },
-    uri: 'http://waifu2x.udp.jp/api', 
+    uri: 'http://waifu2x.udp.jp/api',
     method: 'POST',
-    body: querystring.stringify({'noise': 1, 'scale': 2, 'style': 'photo',  'url': 'https://s3.amazonaws.com/alpine-misc/pulse-thumb.jpg'})},
-    function(err, httpResponse, body){
+    body: formData
+  },function(err, httpResponse, body){
     console.log(err);
     console.log(httpResponse);
     console.log(body);
     res.send({error: err, response: httpResponse, body: body});
-  }
+  });
 });
 
 
