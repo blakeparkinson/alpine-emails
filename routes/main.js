@@ -34,6 +34,7 @@ var transporter2 = nodemailer.createTransport("SMTP", {
 });
 
 router.post('/images', cors(), function(req, res) {
+  console.log('hi');
   request.post({url: 'http://waifu2x.udp.jp/api', form: {'noise': 1, 'scale': 2, 'style': 'photo', 'url': 'https://s3.amazonaws.com/alpine-misc/pulse-thumb.jpg'}}), function(err, httpResponse, body){
     console.log(err);
     console.log(httpResponse);
