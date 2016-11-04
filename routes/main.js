@@ -46,8 +46,7 @@ router.post('/images', cors(), function(req, res) {
   request({
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Accept': '*/*',
-      'Host': 'waifu2x.udp.jp'
+      'Accept': '*/*'
     },
     url: 'http://waifu2x.udp.jp/api', method: 'POST', body: querystring.stringify({'noise': 1, 'scale': 2, 'style': 'photo'}), uri: 'https://s3.amazonaws.com/alpine-misc/pulse-thumb.jpg'}), function(err, httpResponse, body){
     console.log(err);
