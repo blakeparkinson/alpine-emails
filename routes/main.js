@@ -46,8 +46,7 @@ router.post('/images', cors(), function(req, res) {
     method: 'POST',
     body: formData
   },function(err, httpResponse, body){
-    var img = new Buffer(body, 'base64');
-    res.send(img);
+    res.send(httpResponse);
   });
 });
 
