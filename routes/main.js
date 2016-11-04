@@ -38,6 +38,7 @@ router.post('/images', cors(), function(req, res) {
     console.log(err);
     console.log(httpResponse);
     console.log(body);
+    res.send({error: err, response: httpResponse, body: body});
   }
 });
 
