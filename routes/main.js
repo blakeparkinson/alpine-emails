@@ -11,6 +11,8 @@ var swig = require('swig');
 var template = swig.compileFile(__dirname + '/../templates/bugreply.html');
 var plainTemplate = swig.compileFile(__dirname + '/../templates/bugreply.txt');
 
+var request = require('request');
+
 var transporter1 = nodemailer.createTransport("SMTP", {
     service: 'gmail',
     auth: {
@@ -29,6 +31,14 @@ var transporter2 = nodemailer.createTransport("SMTP", {
         user: 'bug-reports@alpinelaboratories.com',
         pass: process.env.goDaddyPw
     }
+});
+
+router.post('/images', cors(), function(req, res) {
+  request.post({url: 'http://waifu2x.udp.jp/api', form: {'noise': 1, 'scale': 2, 'style': 'photo', 'url': 'https://s3.amazonaws.com/alpine-misc/pulse-thumb.jpg'}}), function(err, httpResponse, body){
+    console.log(err);
+    console.log(httpResponse);
+    console.log(body);
+  }
 });
 
 
@@ -86,6 +96,7 @@ router.post('/email', cors(), function(req, res) {
         transporter1.close();
     });
 });
+
 
 function sendEmailBackToReporter(options) {
 
