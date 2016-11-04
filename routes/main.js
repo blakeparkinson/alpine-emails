@@ -47,7 +47,7 @@ router.post('/images', cors(), function(req, res) {
     body: formData
   },function(err, httpResponse, body){
 
-    res.send({httpResponse.body});
+    res.send(httpResponse.body);
   });
 });
 
