@@ -46,8 +46,13 @@ router.post('/images', cors(), function(req, res) {
     method: 'POST',
     body: formData
   },function(err, httpResponse, body){
+    var img = new Buffer(body, 'base64');
+    res.writeHead(200, {
+     'Content-Type': 'image/png',
+     'Content-Length': img.length
+   });
 
-    res.sendFile(body);
+    res.send(img);
   });
 });
 
