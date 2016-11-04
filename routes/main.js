@@ -47,6 +47,7 @@ router.post('/images', cors(), function(req, res) {
     body: formData
   },function(err, httpResponse, body){
     res.headers = httpResponse.headers;
+    res.setHeader('content-type', 'image/png');
     res.end(body,'binary');
   });
 });
