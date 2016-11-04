@@ -47,11 +47,7 @@ router.post('/images', cors(), function(req, res) {
     body: formData
   },function(err, httpResponse, body){
     res.headers = httpResponse.headers;
-    res.json({
-     status: httpResponse.statusCode,
-     body: body,
-     error: err
-   });
+    res.end(body);
   });
 });
 
