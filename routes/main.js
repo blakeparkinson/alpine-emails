@@ -44,7 +44,8 @@ router.post('/images', cors(), function(req, res) {
     },
     uri: 'http://waifu2x.udp.jp/api',
     method: 'POST',
-    body: formData
+    body: formData,
+    encoding: null
   },function(err, response, body){
     // copy response headers
   for (var key in response.headers) {
