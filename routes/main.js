@@ -52,7 +52,7 @@ router.post('/images', cors(), function(req, res) {
       res.setHeader(key, response.headers[key])
     }
   }
-  res.sendFile(body)
+  res.send(response.statusCode, body.toString('utf8'));
   });
 });
 
