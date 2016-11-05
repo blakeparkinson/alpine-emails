@@ -46,14 +46,14 @@ router.post('/images', cors(), function(req, res) {
     method: 'POST',
     body: formData,
     encoding: null
-  },function(err, response, body){
+  },function(err, httpResponse, body){
     // copy response headers
   for (var key in response.headers) {
     if (response.headers.hasOwnProperty(key)) {
       res.setHeader(key, response.headers[key])
     }
   }
-  res.send(response.statusCode, new Buffer(body.toString('binary')));
+    res.end(httpResponse.body, 'binary');
   });
 });
 
