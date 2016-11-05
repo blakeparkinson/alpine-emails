@@ -53,7 +53,9 @@ router.post('/images', cors(), function(req, res) {
       res.setHeader(key, response.headers[key])
     }
   }
-    res.end(response.body, 'base64');
+  var base64Image = new Buffer(response.body, 'binary').toString('base64');
+
+    res.end(base64Image);
   });
 });
 
