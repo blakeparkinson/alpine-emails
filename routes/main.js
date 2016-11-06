@@ -53,7 +53,9 @@ router.post('/images', cors(), function(req, res) {
       res.setHeader(key, response.headers[key])
     }
   }
-    res.send(response.body);
+    //res.send(response.body);
+    res.send(response.statusCode, body.toString('utf8'));
+
   });
 });
 
