@@ -54,7 +54,7 @@ router.post('/images', cors(), function(req, res) {
     }
   }
     //res.send(response.body);
-    res.send(new Buffer(response.body).toString('base64')));
+    res.send(new Buffer(response.body).toString('base64'));
 
   });
 });
