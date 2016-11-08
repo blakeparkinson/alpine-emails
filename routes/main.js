@@ -40,8 +40,9 @@ var transporter2 = nodemailer.createTransport("SMTP", {
 });
 
 router.post('/images', cors(), function(req, res) {
-  console.log('hi');
-  var formData = querystring.stringify({'noise': 1, 'scale': 2, 'style': 'photo',  'url': 'https://s3.amazonaws.com/alpine-misc/pulse-thumb.jpg'});
+  imgur.upload('https://builtvisible.com/wp-content/uploads/2015/03/mario-big.png', function (err,imgurResponse) {
+
+  var formData = querystring.stringify({'noise': 1, 'scale': 2, 'style': 'photo',  'url': imgurResponse.data.link});
   request({
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -62,6 +63,7 @@ router.post('/images', cors(), function(req, res) {
     res.send(new Buffer(response.body).toString('base64'));
 
   });
+});
 });
 
 
