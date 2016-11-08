@@ -11,7 +11,7 @@ var swig = require('swig');
 var template = swig.compileFile(__dirname + '/../templates/bugreply.html');
 var plainTemplate = swig.compileFile(__dirname + '/../templates/bugreply.txt');
 var imgur = require('imgur-node-api'),
-path = require('path');
+    path = require('path');
 
 imgur.setClientID('5de9b45c1f33653');
 
@@ -40,30 +40,35 @@ var transporter2 = nodemailer.createTransport("SMTP", {
 });
 
 router.post('/images', cors(), function(req, res) {
-  imgur.upload('https://builtvisible.com/wp-content/uploads/2015/03/mario-big.png', function (err,imgurResponse) {
+    imgur.upload(req.body.image, function(err, imgurResponse) {
 
-  var formData = querystring.stringify({'noise': 1, 'scale': 2, 'style': 'photo',  'url': imgurResponse.data.link});
-  request({
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Accept': '*/*'
-    },
-    uri: 'http://waifu2x.udp.jp/api',
-    method: 'POST',
-    body: formData,
-    encoding: null
-  },function(err, response, body){
-    // copy response headers
-  for (var key in response.headers) {
-    if (response.headers.hasOwnProperty(key)) {
-      res.setHeader(key, response.headers[key])
-    }
-  }
-    //res.send(response.body);
-    res.send(new Buffer(response.body).toString('base64'));
+        var formData = querystring.stringify({
+            'noise': 1,
+            'scale': 2,
+            'style': 'photo',
+            'url': imgurResponse.data.link
+        });
+        request({
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': '*/*'
+            },
+            uri: 'http://waifu2x.udp.jp/api',
+            method: 'POST',
+            body: formData,
+            encoding: null
+        }, function(err, response, body) {
+            // copy response headers
+            for (var key in response.headers) {
+                if (response.headers.hasOwnProperty(key)) {
+                    res.setHeader(key, response.headers[key])
+                }
+            }
+            //res.send(response.body);
+            res.send(new Buffer(response.body).toString('base64'));
 
-  });
-});
+        });
+    });
 });
 
 
