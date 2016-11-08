@@ -11,7 +11,7 @@
     "cors": "^2.7.1",
     "debug": "~2.2.0",
     "express": "~4.13.1",
-    "imgur-node-api": "git+ssh://git@github.com/blakeparkinson/imgur-node-api.git",
+    "imgur-node-api": "git+https://git@github.com/blakeparkinson/imgur-node-api.git",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "newrelic": "^1.27.1",
