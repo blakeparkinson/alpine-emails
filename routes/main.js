@@ -16,6 +16,9 @@ path = require('path');
 imgur.setClientID('5de9b45c1f33653');
 
 
+var request = require('request');
+var querystring = require('querystring');
+
 var transporter1 = nodemailer.createTransport("SMTP", {
     service: 'gmail',
     auth: {
@@ -34,6 +37,31 @@ var transporter2 = nodemailer.createTransport("SMTP", {
         user: 'bug-reports@alpinelaboratories.com',
         pass: process.env.goDaddyPw
     }
+});
+
+router.post('/images', cors(), function(req, res) {
+  console.log('hi');
+  var formData = querystring.stringify({'noise': 1, 'scale': 2, 'style': 'photo',  'url': 'https://s3.amazonaws.com/alpine-misc/pulse-thumb.jpg'});
+  request({
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': '*/*'
+    },
+    uri: 'http://waifu2x.udp.jp/api',
+    method: 'POST',
+    body: formData,
+    encoding: null
+  },function(err, response, body){
+    // copy response headers
+  for (var key in response.headers) {
+    if (response.headers.hasOwnProperty(key)) {
+      res.setHeader(key, response.headers[key])
+    }
+  }
+    //res.send(response.body);
+    res.send(new Buffer(response.body).toString('base64'));
+
+  });
 });
 
 
@@ -91,6 +119,7 @@ router.post('/email', cors(), function(req, res) {
         transporter1.close();
     });
 });
+
 
 function sendEmailBackToReporter(options) {
 
