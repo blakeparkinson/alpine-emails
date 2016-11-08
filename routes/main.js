@@ -10,6 +10,11 @@ var wellknown = require('nodemailer-wellknown');
 var swig = require('swig');
 var template = swig.compileFile(__dirname + '/../templates/bugreply.html');
 var plainTemplate = swig.compileFile(__dirname + '/../templates/bugreply.txt');
+var imgur = require('imgur-node-api'),
+path = require('path');
+
+imgur.setClientID('5de9b45c1f33653');
+
 
 var transporter1 = nodemailer.createTransport("SMTP", {
     service: 'gmail',
