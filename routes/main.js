@@ -40,7 +40,6 @@ var transporter2 = nodemailer.createTransport("SMTP", {
 });
 
 router.post('/images', cors(), function(req, res) {
-  console.log(req.body.image);
     imgur.upload(req.body.image, function(err, imgurResponse) {
 
         var formData = querystring.stringify({
