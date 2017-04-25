@@ -1,7 +1,7 @@
 Hello {{ firstName }},
  
-The articles and videos below often resolve most issues. Please take a look and if the issue persists email us back and we'll take a deeper look at what’s going on!
- 
+This is an autoresponse to let you know that we'll get back to you within about two business days. In the meantime, the articles and videos below often resolve most issues.
+   
 1. Thumbnail images are not working (they are black or white)
 Read this page: https://alpinelaboratories.com/pages/pulse-image-review-problems_s
  
