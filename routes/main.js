@@ -31,7 +31,7 @@ var transporter2 = nodemailer.createTransport('SMTP', {
   }
 })
 
-router.post('/nonsense', cors(), function(req, res) {
+router.post('/email', cors(), function(req, res) {
   console.log('request made to the email api')
 
   var markup = [
